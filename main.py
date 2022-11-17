@@ -4,18 +4,20 @@ from random import randint
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5 import uic
+from UI import Ui_Form
 
 
-class DrawYellowCircle(QWidget):
+class DrawwCircle(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
+        self.setupUi(self)
         uic.loadUi('UI.ui', self)
         self.initUI()
         self.draw = False
 
     def initUI(self):
         self.setGeometry(300, 300, 400, 400)
-        self.btn.clicked.connect(self.run)
+        self.pushButton.clicked.connect(self.run)
 
     def run(self):
         self.draw = True
@@ -29,7 +31,7 @@ class DrawYellowCircle(QWidget):
             qp.end()
 
     def draw_yellow_circle(self, qp):
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         for i in range(30):
             r = randint(0, 100)
             qp.drawEllipse(randint(0, 300), randint(0, 300), r, r)
